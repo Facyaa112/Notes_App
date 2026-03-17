@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менеджер заметок</title>
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Подключаем jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка с навигацией -->
+        <header>
+            <h1>Менеджер заметок</h1>
+            <nav id="main-nav">
+                <!-- Навигация будет заполняться через JavaScript -->
+            </nav>
+        </header>
+
+        <main>
+            <!-- Блок для сообщений -->
+            <div id="message-area"></div>
+
+            <!-- Секция для неавторизованных пользователей -->
+            <div id="auth-section" class="section">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="login">Вход</button>
+                    <button class="tab-btn" data-tab="register">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+                <div id="login-form" class="form-container active">
+                    <h2>Вход в систему</h2>
+                    <form id="login">
+                        <div class="form-group">
+                            <label for="login-email">Email:</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Пароль:</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="remember-me" name="remember">
+                            <label for="remember-me">Запомнить меня</label>
+                        </div>
+                        <button type="submit" class="btn-primary">Войти</button>
+                    </form>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div id="register-form" class="form-container">
+                    <h2>Регистрация</h2>
+                    <form id="register">
+                        <div class="form-group">
+                            <label for="register-name">Имя:</label>
+                            <input type="text" id="register-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email:</label>
+                            <input type="email" id="register-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Пароль:</label>
+                            <input type="password" id="register-password" name="password" required>
+                            <small>Минимум 6 символов, 1 заглавная буква, 1 цифра</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Подтверждение пароля:</label>
+                            <input type="password" id="register-confirm" name="confirm" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Секция для авторизованных пользователей (изначально скрыта) -->
+            <div id="app-section" class="section hidden">
+                <!-- Вкладки приложения -->
+                <div class="app-tabs">
+                    <button class="app-tab-btn active" data-app-tab="notes">Заметки</button>
+                    <button class="app-tab-btn" data-app-tab="profile">Профиль</button>
+                    <button class="app-tab-btn" data-app-tab="admin" id="admin-tab" style="display: none;">Админ панель</button>
+                    <button class="app-tab-btn" id="logout-btn">Выход</button>
+                </div>
+
+                <!-- Вкладка с заметками -->
+                <div id="notes-tab" class="app-tab-content active">
+                    <div class="notes-header">
+                        <h2>Мои заметки</h2>
+                        <button id="create-note-btn" class="btn-success">+ Новая заметка</button>
+                    </div>
+                    
+                    <!-- Поиск по заметкам -->
+                    <div class="search-box">
+                        <input type="text" id="search-notes" placeholder="Поиск по заметкам...">
+                    </div>
+
+                    <!-- Список заметок -->
+                    <div id="notes-list" class="notes-grid">
+                        <!-- Заметки будут загружаться сюда -->
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div id="pagination" class="pagination">
+                        <!-- Кнопки пагинации будут здесь -->
+                    </div>
+                </div>
+
+                <!-- Вкладка профиля -->
+                <div id="profile-tab" class="app-tab-content">
+                    <h2>Профиль пользователя</h2>
+                    <div id="profile-info">
+                        <!-- Информация о пользователе -->
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3>Смена пароля</h3>
+                        <form id="change-password-form">
+                            <div class="form-group">
+                                <label for="current-password">Текущий пароль:</label>
+                                <input type="password" id="current-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Новый пароль:</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-new-password">Подтвердите новый пароль:</label>
+                                <input type="password" id="confirm-new-password" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Сменить пароль</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Вкладка администратора -->
+                <div id="admin-tab-content" class="app-tab-content">
+                    <h2>Панель администратора</h2>
+                    <div id="users-list">
+                        <!-- Список пользователей будет загружаться сюда -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно для создания/редактирования заметки -->
+    <div id="note-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Новая заметка</h2>
+            <form id="note-form">
+                <div class="form-group">
+                    <label for="note-title">Заголовок:</label>
+                    <input type="text" id="note-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="note-content">Содержание:</label>
+                    <textarea id="note-content" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="note-image">Изображение (URL):</label>
+                    <input type="url" id="note-image" placeholder="https://...">
+                </div>
+                <button type="submit" class="btn-primary" id="save-note-btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Подключаем наш JavaScript -->
+    <script src="/js/bundle.js"></script>
+</body>
+</html>

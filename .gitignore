@@ -1,0 +1,109 @@
+# Директория зависимостей
+node_modules/
+
+# Файлы базы данных (но оставляем структуру папки)
+server/data/*.json
+!server/data/.gitkeep
+
+# Логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Директория сборки клиента - полностью игнорируем js файлы
+client/public/js/bundle.js
+client/public/js/bundle.js.map
+client/public/js/bundle.js.LICENSE.txt
+client/public/js/*.js
+client/public/js/*.js.map
+client/public/js/*.LICENSE.txt
+!client/public/js/.gitkeep
+
+# Директория для загруженных файлов
+client/public/uploads/
+client/public/uploads/*
+!client/public/uploads/.gitkeep
+
+# Файлы окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Директории IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Директории сборки
+dist/
+build/
+coverage/
+
+# Временные файлы
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Системные файлы Windows
+*.log
+*.tmp
+*.pid
+*.seed
+*.pid.lock
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Системные файлы macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Системные файлы Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Файлы отладки
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Директории кэша
+.cache/
+.temp/
+.tmp/
+
+# Файлы покрытия тестами
+coverage/
+.nyc_output/
+
+# Архивы
+*.zip
+*.tar
+*.gz
+*.rar
+
+# Бэкапы
+*.bak
+*.backup
