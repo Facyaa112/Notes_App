@@ -1,10 +1,6 @@
 # Директория зависимостей
 node_modules/
 
-# Файлы базы данных (но оставляем структуру папки)
-server/data/*.json
-!server/data/.gitkeep
-
 # Логи
 *.log
 npm-debug.log*

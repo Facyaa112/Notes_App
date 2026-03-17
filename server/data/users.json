@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1773733449791",
+    "email": "neadmin@test.com",
+    "password": "$2a$10$MQOm2AB9p.6ltMr48CO7sOGHqau8lOPnLZd.2ucr3jwAXiaYeZ426",
+    "name": "hahah_1123",
+    "role": "admin",
+    "createdAt": "2026-03-17T07:44:09.791Z"
+  },
+  {
+    "id": "1773733824611",
+    "email": "nea@test.com",
+    "password": "$2a$10$k5k2029IlnuI/TmNsi.VpO6pGAUaWWbjHYcNQWKLmmEGbBr9W8Sci",
+    "name": "Роман",
+    "role": "user",
+    "createdAt": "2026-03-17T07:50:24.612Z"
+  }
+]
